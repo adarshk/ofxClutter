@@ -33,7 +33,7 @@ class ofAppClutterWindow : public ofAppBaseWindow {
 	void showCursor() {}
 	
 	void	setWindowPosition(int x, int y) {}
-	void	setWindowShape(int w, int h) {}
+	void	setWindowShape(int w, int h);
 	
 	int		getFrameNum() { return 0; }
 	float	getFrameRate() {return 0; }
