@@ -61,6 +61,13 @@ void testApp::setup(){
 	clutter_timeline_set_loop(timeline, TRUE); 
 	clutter_timeline_start(timeline);
 	
+	
+	ClutterActor *label = clutter_text_new_full("Sans 60", "Some Text", &cyan);
+	clutter_actor_set_size(label, 500, 500);
+	clutter_actor_set_position(label, 20, 500);
+
+	clutter_container_add_actor(CLUTTER_CONTAINER(stage), label);
+	clutter_actor_show(label);
 }
 
 //--------------------------------------------------------------
@@ -75,12 +82,12 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+	cout << "keyPressed: " << (char)key << endl;
 }
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-
+	cout << "keyReleased: " << (char)key << endl;
 }
 
 //--------------------------------------------------------------
@@ -95,12 +102,12 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-
+	cout << "mousePressed: x=" << x << " y=" << y << endl;
 }
 
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
-
+	cout << "mousePressed: x=" << x << " y=" << y << endl;
 }
 
 //--------------------------------------------------------------
