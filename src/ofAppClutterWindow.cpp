@@ -43,14 +43,15 @@ ofBaseApp*	ofAppPtr;
 // NOTE:  
 // ClutterMM?  http://danielkitta.org/blog/2009/01/07/cluttermm-tutorial/
 
+
+//------------------------------------------------------------
 ofAppClutterWindow::ofAppClutterWindow(int argc, char *argv[]){
 	clutter_init(&argc, &argv);
 }
 
 
-
-static gboolean
-on_stage_button_press (ClutterStage *stage, ClutterEvent *event, gpointer data)
+//------------------------------------------------------------
+static gboolean on_stage_button_press (ClutterStage *stage, ClutterEvent *event, gpointer data)
 {
 	gfloat x = 0;
 	gfloat y = 0;
@@ -73,9 +74,12 @@ on_stage_button_press (ClutterStage *stage, ClutterEvent *event, gpointer data)
 	mouseEventArgs.button = button;
 	ofNotifyEvent( ofEvents.mousePressed, mouseEventArgs );
 #endif
+	
 	return TRUE; /* Stop further handling of this event. */
 }
 
+
+//------------------------------------------------------------
 static gboolean on_stage_button_release(ClutterStage *stage, ClutterEvent *event, gpointer data)
 {
 	gfloat x = 0;
@@ -96,6 +100,8 @@ static gboolean on_stage_button_release(ClutterStage *stage, ClutterEvent *event
 	mouseEventArgs.button = button;
 	ofNotifyEvent( ofEvents.mouseReleased, mouseEventArgs );
 #endif	
+	
+	return TRUE; /* Stop further handling of this event. */
 }
 
 
@@ -112,9 +118,11 @@ static gboolean on_stage_key_press(ClutterStage *stage, ClutterEvent *event, gpo
 	ofNotifyEvent( ofEvents.keyPressed, keyEventArgs );
 #endif
 	
-	if (key == OF_KEY_ESC){				// "escape"
+	if (key == 5){				// "escape"
 		OF_EXIT_APP(0);
 	}
+	
+	return TRUE; /* Stop further handling of this event. */
 }
 
 //------------------------------------------------------------
@@ -129,13 +137,53 @@ static gboolean on_stage_key_release(ClutterStage *stage, ClutterEvent *event, g
 	keyEventArgs.key = key;
 	ofNotifyEvent( ofEvents.keyReleased, keyEventArgs );
 #endif
+	
+	return TRUE; /* Stop further handling of this event. */
 }
 
+
+//------------------------------------------------------------
 void ofAppClutterWindow::setWindowShape(int w, int h) {
 	clutter_actor_set_size(stage, w, h);
 }
 
 
+//------------------------------------------------------------
+void ofAppClutterWindow::setWindowTitle(string title){
+	clutter_stage_set_title(CLUTTER_STAGE(stage), title.c_str());
+}
+
+
+//------------------------------------------------------------
+void ofAppClutterWindow::hideCursor() {
+	clutter_stage_show_cursor(CLUTTER_STAGE(stage));
+}
+
+
+//------------------------------------------------------------
+void ofAppClutterWindow::showCursor() {
+	clutter_stage_show_cursor(CLUTTER_STAGE(stage));
+}
+
+//------------------------------------------------------------
+void ofAppClutterWindow::setFullscreen(bool fullscreen){
+	clutter_stage_set_fullscreen(CLUTTER_STAGE(stage), fullscreen);
+}
+
+//------------------------------------------------------------
+void ofAppClutterWindow::toggleFullscreen(){
+	gboolean fullscreen = clutter_stage_get_fullscreen(CLUTTER_STAGE(stage));
+	clutter_stage_set_fullscreen(CLUTTER_STAGE(stage), !fullscreen);
+}
+
+
+//------------------------------------------------------------
+int ofAppClutterWindow::getWindowMode() {
+	gboolean fullscreen = clutter_stage_get_fullscreen(CLUTTER_STAGE(stage));
+	return (fullscreen) ? OF_FULLSCREEN : OF_WINDOW;
+}
+
+//------------------------------------------------------------
 void ofAppClutterWindow::setupOpenGL(int w, int h, int screenMode) {
 	ClutterColor stage_color = { 200, 200, 200, 255 };
 	
@@ -155,10 +203,12 @@ void ofAppClutterWindow::setupOpenGL(int w, int h, int screenMode) {
 					 G_CALLBACK(on_stage_key_release), NULL);
 }
 
+//------------------------------------------------------------
 void ofAppClutterWindow::initializeWindow() {
 	clutter_actor_show(stage);
 }
 
+//------------------------------------------------------------
 void ofAppClutterWindow::runAppViaInfiniteLoop(ofBaseApp * appPtr) {
 	
 	ofAppPtr = appPtr;

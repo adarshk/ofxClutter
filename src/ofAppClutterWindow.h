@@ -29,8 +29,8 @@ class ofAppClutterWindow : public ofAppBaseWindow {
 	void initializeWindow();
 	void runAppViaInfiniteLoop(ofBaseApp * appPtr);
 		
-	void hideCursor() {}
-	void showCursor() {}
+	void hideCursor();
+	void showCursor();
 	
 	void	setWindowPosition(int x, int y) {}
 	void	setWindowShape(int w, int h);
@@ -44,12 +44,12 @@ class ofAppClutterWindow : public ofAppBaseWindow {
 	ofPoint	getScreenSize(){return ofPoint(); }
 	
 	void	setFrameRate(float targetRate){}
-	void	setWindowTitle(string title){}
+	void	setWindowTitle(string title);
 	
-	int		getWindowMode() {return 0;}
+	int		getWindowMode();
 	
-	void	setFullscreen(bool fullscreen){}
-	void	toggleFullscreen(){}
+	void	setFullscreen(bool fullscreen);
+	void	toggleFullscreen();
 	
 	void	enableSetupScreen(){}
 	void	disableSetupScreen(){}
