@@ -1,5 +1,5 @@
 /*
- *  ofAppClutterWindow.h
+ *  ofxAppClutterWindow.h
  *  openFrameworksLib
  *
  *  Created by Jeffrey Crouse on 1/26/11.
@@ -17,13 +17,13 @@ class ofPoint;
 class ofBaseApp;
 
 extern ClutterActor *stage;
+extern ClutterTimeline* timeline;
 
-
-class ofAppClutterWindow : public ofAppBaseWindow {
+class ofxAppClutterWindow : public ofAppBaseWindow {
 	public:
 	
-	ofAppClutterWindow(int argc, char *argv[]);
-	~ofAppClutterWindow(){};
+	ofxAppClutterWindow(int argc, char *argv[]);
+	~ofxAppClutterWindow(){};
 	
 	void setupOpenGL(int w, int h, int screenMode);
 	void initializeWindow();

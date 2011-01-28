@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F4A33F512F1EDF600E3F349 /* ofAppClutterWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A33F312F1EDF600E3F349 /* ofAppClutterWindow.cpp */; };
+		1F39922012F27D0100A528D8 /* ofxAppClutterWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F39921E12F27D0100A528D8 /* ofxAppClutterWindow.cpp */; };
 		1F4A342812F1EE7200E3F349 /* libclutter-osx-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4A342712F1EE7200E3F349 /* libclutter-osx-1.0.0.dylib */; };
 		1F4A344E12F1EEB400E3F349 /* libgobject-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4A344D12F1EEB400E3F349 /* libgobject-2.0.0.dylib */; };
-		1F4A345612F1EF7F00E3F349 /* pango-basic-x.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4A345512F1EF7F00E3F349 /* pango-basic-x.a */; };
-		1F4A345B12F1EFCB00E3F349 /* libcairo-trace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4A345A12F1EFCB00E3F349 /* libcairo-trace.a */; };
 		1F4A345D12F1EFF500E3F349 /* libatk-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4A345C12F1EFF500E3F349 /* libatk-1.0.0.dylib */; };
 		1F4A346212F1F04B00E3F349 /* libjson-glib-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4A346112F1F04B00E3F349 /* libjson-glib-1.0.0.dylib */; };
 		E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE0A90E8CC67C009D7055 /* GLee.a */; };
@@ -85,12 +83,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1F4A33F312F1EDF600E3F349 /* ofAppClutterWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofAppClutterWindow.cpp; path = ../../../addons/ofxClutter/src/ofAppClutterWindow.cpp; sourceTree = SOURCE_ROOT; };
-		1F4A33F412F1EDF600E3F349 /* ofAppClutterWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofAppClutterWindow.h; path = ../../../addons/ofxClutter/src/ofAppClutterWindow.h; sourceTree = SOURCE_ROOT; };
+		1F39921E12F27D0100A528D8 /* ofxAppClutterWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxAppClutterWindow.cpp; path = ../../../addons/ofxClutter/src/ofxAppClutterWindow.cpp; sourceTree = SOURCE_ROOT; };
+		1F39921F12F27D0100A528D8 /* ofxAppClutterWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxAppClutterWindow.h; path = ../../../addons/ofxClutter/src/ofxAppClutterWindow.h; sourceTree = SOURCE_ROOT; };
 		1F4A342712F1EE7200E3F349 /* libclutter-osx-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libclutter-osx-1.0.0.dylib"; path = "../../../addons/ofxClutter/clutter/lib/osx/libclutter-osx-1.0.0.dylib"; sourceTree = SOURCE_ROOT; };
 		1F4A344D12F1EEB400E3F349 /* libgobject-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgobject-2.0.0.dylib"; path = "../../../addons/ofxClutter/clutter/lib/osx/libgobject-2.0.0.dylib"; sourceTree = SOURCE_ROOT; };
-		1F4A345512F1EF7F00E3F349 /* pango-basic-x.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "pango-basic-x.a"; path = "../../../addons/ofxClutter/clutter/lib/osx/pango/1.6.0/modules/pango-basic-x.a"; sourceTree = SOURCE_ROOT; };
-		1F4A345A12F1EFCB00E3F349 /* libcairo-trace.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcairo-trace.a"; path = "../../../addons/ofxClutter/clutter/lib/osx/cairo/libcairo-trace.a"; sourceTree = SOURCE_ROOT; };
 		1F4A345C12F1EFF500E3F349 /* libatk-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libatk-1.0.0.dylib"; path = "../../../addons/ofxClutter/clutter/lib/osx/libatk-1.0.0.dylib"; sourceTree = SOURCE_ROOT; };
 		1F4A346112F1F04B00E3F349 /* libjson-glib-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libjson-glib-1.0.0.dylib"; path = "../../../addons/ofxClutter/clutter/lib/osx/libjson-glib-1.0.0.dylib"; sourceTree = SOURCE_ROOT; };
 		E45BE0390E8CC647009D7055 /* FreeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeImage.h; path = ../../../libs/freeimage/include/FreeImage.h; sourceTree = SOURCE_ROOT; };
@@ -165,8 +161,6 @@
 				E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */,
 				1F4A342812F1EE7200E3F349 /* libclutter-osx-1.0.0.dylib in Frameworks */,
 				1F4A344E12F1EEB400E3F349 /* libgobject-2.0.0.dylib in Frameworks */,
-				1F4A345612F1EF7F00E3F349 /* pango-basic-x.a in Frameworks */,
-				1F4A345B12F1EFCB00E3F349 /* libcairo-trace.a in Frameworks */,
 				1F4A345D12F1EFF500E3F349 /* libatk-1.0.0.dylib in Frameworks */,
 				1F4A346212F1F04B00E3F349 /* libjson-glib-1.0.0.dylib in Frameworks */,
 			);
@@ -199,8 +193,6 @@
 			children = (
 				1F4A346112F1F04B00E3F349 /* libjson-glib-1.0.0.dylib */,
 				1F4A345C12F1EFF500E3F349 /* libatk-1.0.0.dylib */,
-				1F4A345A12F1EFCB00E3F349 /* libcairo-trace.a */,
-				1F4A345512F1EF7F00E3F349 /* pango-basic-x.a */,
 				1F4A344D12F1EEB400E3F349 /* libgobject-2.0.0.dylib */,
 				1F4A342712F1EE7200E3F349 /* libclutter-osx-1.0.0.dylib */,
 			);
@@ -211,8 +203,8 @@
 		1F4A33F212F1EDF600E3F349 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				1F4A33F312F1EDF600E3F349 /* ofAppClutterWindow.cpp */,
-				1F4A33F412F1EDF600E3F349 /* ofAppClutterWindow.h */,
+				1F39921E12F27D0100A528D8 /* ofxAppClutterWindow.cpp */,
+				1F39921F12F27D0100A528D8 /* ofxAppClutterWindow.h */,
 			);
 			name = src;
 			path = ../../../addons/ofxClutter/src;
@@ -595,7 +587,7 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* testApp.cpp in Sources */,
-				1F4A33F512F1EDF600E3F349 /* ofAppClutterWindow.cpp in Sources */,
+				1F39922012F27D0100A528D8 /* ofxAppClutterWindow.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +684,8 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
 				);
@@ -829,6 +823,8 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/freeimage/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/../../../libs/fmodex/lib/osx\"";
@@ -890,6 +886,8 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
 				);
