@@ -43,12 +43,20 @@ ofBaseApp*	ofAppPtr;
 
 //------------------------------------------------------------
 ofxAppClutterWindow::ofxAppClutterWindow(int argc, char *argv[]){
+	// I want to keep the args in here because there are some useful command line
+	// options built into Clutter
+	// http://docs.clutter-project.org/docs/clutter/1.4/running-clutter.html
+	//int argc = 1;
+	//char *argv = (char*)"openframeworks";
+	//char **vptr = &argv;
+	
 	clutter_init(&argc, &argv);
 }
 
 
 //------------------------------------------------------------
 void on_timeline_new_frame(ClutterTimeline *timeline, gint frame_num, gpointer data) {
+
 	if(ofAppPtr){
 		ofAppPtr->update();
 		ofAppPtr->draw();
@@ -220,6 +228,9 @@ void ofxAppClutterWindow::setupOpenGL(int w, int h, int screenMode) {
 					 G_CALLBACK(on_stage_mouse_move), NULL);
 	
 	
+	
+	// We should probably use clutter_threads_add_idle and clutter_threads_add_repaint_func 
+	// here but I'm not sure how yet.
 }
 
 //------------------------------------------------------------
@@ -242,6 +253,6 @@ void ofxAppClutterWindow::runAppViaInfiniteLoop(ofBaseApp * appPtr) {
 	g_signal_connect(timeline, "new-frame", G_CALLBACK(on_timeline_new_frame), NULL);
 	clutter_timeline_set_loop(timeline, TRUE); 
 	clutter_timeline_start(timeline);
-	
+
 	clutter_main();
 }

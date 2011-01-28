@@ -12,6 +12,9 @@
 		1F4A344E12F1EEB400E3F349 /* libgobject-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4A344D12F1EEB400E3F349 /* libgobject-2.0.0.dylib */; };
 		1F4A345D12F1EFF500E3F349 /* libatk-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4A345C12F1EFF500E3F349 /* libatk-1.0.0.dylib */; };
 		1F4A346212F1F04B00E3F349 /* libjson-glib-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4A346112F1F04B00E3F349 /* libjson-glib-1.0.0.dylib */; };
+		1F9C159012F34F5F006BB1CD /* ofxClutterRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C158F12F34F5F006BB1CD /* ofxClutterRect.cpp */; };
+		1F9C15A412F353E0006BB1CD /* ofxClutterActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C15A312F353E0006BB1CD /* ofxClutterActor.cpp */; };
+		1F9C15A712F35480006BB1CD /* ofxClutterTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C15A612F35480006BB1CD /* ofxClutterTexture.cpp */; };
 		E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE0A90E8CC67C009D7055 /* GLee.a */; };
 		E45BE2E40E8CC69C009D7055 /* rtAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE2E30E8CC69C009D7055 /* rtAudio.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -89,6 +92,12 @@
 		1F4A344D12F1EEB400E3F349 /* libgobject-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgobject-2.0.0.dylib"; path = "../../../addons/ofxClutter/clutter/lib/osx/libgobject-2.0.0.dylib"; sourceTree = SOURCE_ROOT; };
 		1F4A345C12F1EFF500E3F349 /* libatk-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libatk-1.0.0.dylib"; path = "../../../addons/ofxClutter/clutter/lib/osx/libatk-1.0.0.dylib"; sourceTree = SOURCE_ROOT; };
 		1F4A346112F1F04B00E3F349 /* libjson-glib-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libjson-glib-1.0.0.dylib"; path = "../../../addons/ofxClutter/clutter/lib/osx/libjson-glib-1.0.0.dylib"; sourceTree = SOURCE_ROOT; };
+		1F9C158E12F34F5F006BB1CD /* ofxClutterRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxClutterRect.h; sourceTree = "<group>"; };
+		1F9C158F12F34F5F006BB1CD /* ofxClutterRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxClutterRect.cpp; sourceTree = "<group>"; };
+		1F9C15A212F353E0006BB1CD /* ofxClutterActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxClutterActor.h; sourceTree = "<group>"; };
+		1F9C15A312F353E0006BB1CD /* ofxClutterActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxClutterActor.cpp; sourceTree = "<group>"; };
+		1F9C15A512F35480006BB1CD /* ofxClutterTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxClutterTexture.h; sourceTree = "<group>"; };
+		1F9C15A612F35480006BB1CD /* ofxClutterTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxClutterTexture.cpp; sourceTree = "<group>"; };
 		E45BE0390E8CC647009D7055 /* FreeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeImage.h; path = ../../../libs/freeimage/include/FreeImage.h; sourceTree = SOURCE_ROOT; };
 		E45BE03F0E8CC650009D7055 /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod.h; path = ../../../libs/fmodex/include/fmod.h; sourceTree = SOURCE_ROOT; };
 		E45BE0400E8CC650009D7055 /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmod.hpp; path = ../../../libs/fmodex/include/fmod.hpp; sourceTree = SOURCE_ROOT; };
@@ -205,6 +214,12 @@
 			children = (
 				1F39921E12F27D0100A528D8 /* ofxAppClutterWindow.cpp */,
 				1F39921F12F27D0100A528D8 /* ofxAppClutterWindow.h */,
+				1F9C15A212F353E0006BB1CD /* ofxClutterActor.h */,
+				1F9C15A312F353E0006BB1CD /* ofxClutterActor.cpp */,
+				1F9C158E12F34F5F006BB1CD /* ofxClutterRect.h */,
+				1F9C158F12F34F5F006BB1CD /* ofxClutterRect.cpp */,
+				1F9C15A512F35480006BB1CD /* ofxClutterTexture.h */,
+				1F9C15A612F35480006BB1CD /* ofxClutterTexture.cpp */,
 			);
 			name = src;
 			path = ../../../addons/ofxClutter/src;
@@ -588,6 +603,9 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* testApp.cpp in Sources */,
 				1F39922012F27D0100A528D8 /* ofxAppClutterWindow.cpp in Sources */,
+				1F9C159012F34F5F006BB1CD /* ofxClutterRect.cpp in Sources */,
+				1F9C15A412F353E0006BB1CD /* ofxClutterActor.cpp in Sources */,
+				1F9C15A712F35480006BB1CD /* ofxClutterTexture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

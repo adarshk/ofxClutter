@@ -3,9 +3,8 @@
 
 
 #include "ofMain.h"
-#include <clutter/clutter.h>
-
-
+#include "ofxClutterRect.h"
+#include "ofxClutterTexture.h"
 
 class testApp : public ofBaseApp{
 
@@ -23,7 +22,9 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 	
 		ofImage img;
-		gdouble rotation;
+		float rotation;
+		vector<ofxClutterRect*> rects;
+		ofxClutterTexture tex;
 };
 
 #endif
