@@ -6,6 +6,7 @@
 #include "ofxClutterRect.h"
 #include "ofxClutterTexture.h"
 #include "ofxClutterText.h"
+#include <clutter/clutter.h>
 
 class testApp : public ofBaseApp{
 
@@ -25,8 +26,11 @@ class testApp : public ofBaseApp{
 		ofImage ofimg;
 		float rotation;
 		vector<ofxClutterRect*> rects;
-		ofxClutterTexture tex;
+		ofxClutterTexture koala, monalisaurus;
 		ofxClutterText text;
+	
+		ClutterState *transitions;
+		bool top;
 };
 
 #endif

@@ -22,6 +22,6 @@ public:
 	void setSize(int w, int h);
 	void setZRotation(float angle);
 	
-protected:
+//protected:
 	ClutterActor *actor;
 };
