@@ -36,14 +36,14 @@ class ofxAppClutterWindow : public ofAppBaseWindow {
 	void	setWindowShape(int w, int h);
 	
 	int		getFrameNum() { return 0; }
-	float	getFrameRate() {return 0; }
+	float	getFrameRate();
 	virtual double  getLastFrameTime(){ return 0.0; }
 	
 	ofPoint	getWindowPosition() {return ofPoint(); }
 	ofPoint	getWindowSize(){return ofPoint(); }
 	ofPoint	getScreenSize(){return ofPoint(); }
 	
-	void	setFrameRate(float targetRate){}
+	void	setFrameRate(float targetRate);
 	void	setWindowTitle(string title);
 	
 	int		getWindowMode();

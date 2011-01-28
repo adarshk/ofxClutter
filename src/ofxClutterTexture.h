@@ -11,7 +11,6 @@
 #include "ofxClutterActor.h"
 
 
-
 class ofxClutterTexture : public ofxClutterActor {
 public:
 	ofxClutterTexture();

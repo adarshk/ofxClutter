@@ -15,6 +15,7 @@ extern "C" {
 };
 
 
+//------------------------------------------------------------
 ofxClutterTexture::ofxClutterTexture() {
 	actor = clutter_texture_new();
 	clutter_container_add_actor(CLUTTER_CONTAINER(stage), actor);

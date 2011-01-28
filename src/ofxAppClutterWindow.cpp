@@ -15,31 +15,6 @@ ClutterActor* stage;
 ClutterTimeline* timeline;
 ofBaseApp*	ofAppPtr;
 
-/*
- "allocation-changed"                             : Run Last
- "button-press-event"                             : Run Last
- "button-release-event"                           : Run Last
- "captured-event"                                 : Run Last
- "destroy"                                        : No Hooks
- "enter-event"                                    : Run Last
- "event"                                          : Run Last
- "hide"                                           : Run First
- "key-focus-in"                                   : Run Last
- "key-focus-out"                                  : Run Last
- "key-press-event"                                : Run Last
- "key-release-event"                              : Run Last
- "leave-event"                                    : Run Last
- "motion-event"                                   : Run Last
- "paint"                                          : Run Last
- "parent-set"                                     : Run Last
- "pick"                                           : Run Last
- "queue-redraw"                                   : Run Last
- "queue-relayout"                                 : Run Last
- "realize"                                        : Run Last
- "scroll-event"                                   : Run Last
- "show"                                           : Run First
- "unrealize"                                      : Run Last
- */
 
 //------------------------------------------------------------
 ofxAppClutterWindow::ofxAppClutterWindow(int argc, char *argv[]){
@@ -57,21 +32,8 @@ ofxAppClutterWindow::ofxAppClutterWindow(int argc, char *argv[]){
 //------------------------------------------------------------
 void on_timeline_new_frame(ClutterTimeline *timeline, gint frame_num, gpointer data) {
 
-	if(ofAppPtr){
-		ofAppPtr->update();
-		ofAppPtr->draw();
-		
-#ifdef OF_USING_POCO
-		static ofEventArgs voidEventArgs;
-		ofNotifyEvent( ofEvents.update, voidEventArgs);
-		ofNotifyEvent( ofEvents.draw, voidEventArgs);
-#endif
-		
-	}
+
 }
-
-
-
 
 //------------------------------------------------------------
 static gboolean on_stage_mouse_move(ClutterStage *stage, ClutterEvent *event, gpointer data) {
@@ -91,6 +53,8 @@ static gboolean on_stage_mouse_move(ClutterStage *stage, ClutterEvent *event, gp
 	mouseEventArgs.y = y;
 	ofNotifyEvent( ofEvents.mouseMoved, mouseEventArgs );
 #endif
+	
+	return TRUE;
 }
 
 
@@ -125,7 +89,7 @@ static gboolean on_stage_button(ClutterStage *stage, ClutterEvent *event, gpoint
 		ofNotifyEvent( ofEvents.mouseReleased, mouseEventArgs );
 #endif	
 	
-	//return TRUE; /* Stop further handling of this event. */
+	return TRUE; /* Stop further handling of this event. */
 }
 
 
@@ -160,9 +124,19 @@ static gboolean on_stage_key(ClutterStage *stage, ClutterEvent *event, gpointer 
 		}
 		
 	}
-	//return TRUE; /* Stop further handling of this event. */
+	return TRUE; /* Stop further handling of this event. */
 }
 
+
+//------------------------------------------------------------
+void ofxAppClutterWindow::setFrameRate(float targetRate) {
+	clutter_set_default_frame_rate(targetRate);
+}
+
+//------------------------------------------------------------
+float ofxAppClutterWindow::getFrameRate() {
+	return clutter_get_default_frame_rate();
+}
 
 //------------------------------------------------------------
 void ofxAppClutterWindow::setWindowShape(int w, int h) {
@@ -205,6 +179,22 @@ int ofxAppClutterWindow::getWindowMode() {
 	return (fullscreen) ? OF_FULLSCREEN : OF_WINDOW;
 }
 
+
+//------------------------------------------------------------
+gboolean on_repaint(gpointer p1){
+	if(ofAppPtr){
+		ofAppPtr->update();
+		ofAppPtr->draw();
+		
+#ifdef OF_USING_POCO
+		static ofEventArgs voidEventArgs;
+		ofNotifyEvent( ofEvents.update, voidEventArgs);
+		ofNotifyEvent( ofEvents.draw, voidEventArgs);
+#endif
+	}	
+    return 1;
+}
+
 //------------------------------------------------------------
 void ofxAppClutterWindow::setupOpenGL(int w, int h, int screenMode) {
 	ClutterColor stage_color = { 200, 200, 200, 255 };
@@ -214,24 +204,20 @@ void ofxAppClutterWindow::setupOpenGL(int w, int h, int screenMode) {
 	clutter_stage_set_color(CLUTTER_STAGE(stage), &stage_color);
 	
 	
-	g_signal_connect(stage, "button-press-event",
-					  G_CALLBACK(on_stage_button), NULL);
-	g_signal_connect(stage, "button-release-event",
-					 G_CALLBACK(on_stage_button), NULL);
+	g_signal_connect(stage, "button-press-event", G_CALLBACK(on_stage_button), NULL);
+	g_signal_connect(stage, "button-release-event", G_CALLBACK(on_stage_button), NULL);
 	
-	g_signal_connect(stage, "key-press-event",
-					 G_CALLBACK(on_stage_key), NULL);
-	g_signal_connect(stage, "key-release-event",
-					 G_CALLBACK(on_stage_key), NULL);
+	g_signal_connect(stage, "key-press-event", G_CALLBACK(on_stage_key), NULL);
+	g_signal_connect(stage, "key-release-event",  G_CALLBACK(on_stage_key), NULL);
 	
-	g_signal_connect(stage, "motion-event",
-					 G_CALLBACK(on_stage_mouse_move), NULL);
+	g_signal_connect(stage, "motion-event", G_CALLBACK(on_stage_mouse_move), NULL);
 	
-	
-	
-	// We should probably use clutter_threads_add_idle and clutter_threads_add_repaint_func 
-	// here but I'm not sure how yet.
+
+    clutter_threads_add_repaint_func(&on_repaint, NULL, NULL); //target call
 }
+
+
+
 
 //------------------------------------------------------------
 void ofxAppClutterWindow::initializeWindow() {
@@ -249,8 +235,9 @@ void ofxAppClutterWindow::runAppViaInfiniteLoop(ofBaseApp * appPtr) {
 		ofAppPtr->update();
 	}	
 	
-	timeline = clutter_timeline_new(60);
-	g_signal_connect(timeline, "new-frame", G_CALLBACK(on_timeline_new_frame), NULL);
+	// You have to have something running or else the repaint function won't be called.
+	timeline = clutter_timeline_new( 1000 / getFrameRate() );
+	//g_signal_connect(timeline, "new-frame", G_CALLBACK(on_timeline_new_frame), NULL);
 	clutter_timeline_set_loop(timeline, TRUE); 
 	clutter_timeline_start(timeline);
 
