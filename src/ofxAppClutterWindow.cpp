@@ -181,7 +181,19 @@ int ofxAppClutterWindow::getWindowMode() {
 
 
 //------------------------------------------------------------
+// Sorry this is really messy.  I don't really know what I am doing here.
 gboolean on_repaint(gpointer p1){
+	
+	ofDisableSmoothing();
+	ofEnableAlphaBlending();
+	
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+	
+	
 	if(ofAppPtr){
 		ofAppPtr->update();
 		ofAppPtr->draw();
@@ -192,6 +204,11 @@ gboolean on_repaint(gpointer p1){
 		ofNotifyEvent( ofEvents.draw, voidEventArgs);
 #endif
 	}	
+	
+	
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	
     return 1;
 }
 

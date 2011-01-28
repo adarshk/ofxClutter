@@ -5,6 +5,7 @@
 #include "ofMain.h"
 #include "ofxClutterRect.h"
 #include "ofxClutterTexture.h"
+#include "ofxClutterText.h"
 
 class testApp : public ofBaseApp{
 
@@ -21,10 +22,11 @@ class testApp : public ofBaseApp{
 		void mouseReleased(int x, int y, int button);
 		void windowResized(int w, int h);
 	
-		ofImage img;
+		ofImage ofimg;
 		float rotation;
 		vector<ofxClutterRect*> rects;
 		ofxClutterTexture tex;
+		ofxClutterText text;
 };
 
 #endif

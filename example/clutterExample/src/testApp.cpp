@@ -4,33 +4,25 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 	ofSetVerticalSync(true);
+	ofSetFrameRate(60);
 	
-	for(int i=0; i<10; i++) {
+	for(int i=0; i<4; i++) {
 		ofxClutterRect* rect = new ofxClutterRect();
 		rect->setPosition(128, 128);
 		rect->setAnchor(128, 64);
 		rect->setSize(256, 128);
 		rect->setColor(ofRandom(0,255), ofRandom(0,255), ofRandom(0, 255), ofRandom(0, 255));
+		rect->setBorder(ofRandom(0,255), ofRandom(0,255), ofRandom(0, 255), ofRandom(0, 255), 2);
 		rects.push_back( rect );
 	}
 	
 	rotation=0;
 	
-	
-	tex.loadImage("koala.jpg");
-	
-	tex.setAnchorCenter();
-	tex.setPosition(400, 400);
-	
-	/*
-	ClutterActor *label = clutter_text_new_full("Sans 60", "Some Text", &purple);
-	clutter_actor_set_size(label, 500, 500);
-	clutter_actor_set_position(label, 20, 500);
-	clutter_container_add_actor(CLUTTER_CONTAINER(stage), label);
-	clutter_actor_show(label);
-	*/
-	
-	//img.loadImage("koala.jpg");
+	//tex.loadImage("koala.jpg");
+	//tex.setAnchorCenter();
+	//tex.setPosition(400, 400);
+
+	ofimg.loadImage("koala.jpg");
 }
 
 //--------------------------------------------------------------
@@ -43,13 +35,21 @@ void testApp::update(){
 	}
 	
 	tex.setZRotation(rotation * 0.5);
-
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
 
-	//img.draw(200, 200);
+	// Why aren't you drawing, little guy?
+	ofimg.draw(200, 200);
+	
+	ofPushStyle();
+		ofSetColor(255, 0, 0);
+		ofSetLineWidth(3);
+			
+		// Et tu, ellipse?
+		ofEllipse(500, 500, 200, 200);
+	ofPopStyle();
 }
 
 //--------------------------------------------------------------
