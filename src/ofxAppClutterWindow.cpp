@@ -11,10 +11,14 @@
 #include "ofBaseApp.h"
 #include "ofMain.h"
 
+// Some of the callback methods (and other classes) 
+// need to know about the stage and the app pointer
+// So they need to be out here.
 ClutterActor* stage;
-ClutterTimeline* timeline;
 ofBaseApp*	ofAppPtr;
 
+
+#pragma mark CONSTRUCTOR_DESTRUCTOR
 
 //------------------------------------------------------------
 ofxAppClutterWindow::ofxAppClutterWindow(int argc, char *argv[]){
@@ -30,10 +34,11 @@ ofxAppClutterWindow::ofxAppClutterWindow(int argc, char *argv[]){
 
 
 //------------------------------------------------------------
-void on_timeline_new_frame(ClutterTimeline *timeline, gint frame_num, gpointer data) {
-
-
+ofxAppClutterWindow::~ofxAppClutterWindow() {
+	
 }
+
+#pragma mark CLUTTER_STAGE_CALLBACKS
 
 //------------------------------------------------------------
 static gboolean on_stage_mouse_move(ClutterStage *stage, ClutterEvent *event, gpointer data) {
@@ -56,7 +61,6 @@ static gboolean on_stage_mouse_move(ClutterStage *stage, ClutterEvent *event, gp
 	
 	return TRUE;
 }
-
 
 //------------------------------------------------------------
 static gboolean on_stage_button(ClutterStage *stage, ClutterEvent *event, gpointer data)
@@ -129,6 +133,59 @@ static gboolean on_stage_key(ClutterStage *stage, ClutterEvent *event, gpointer 
 
 
 //------------------------------------------------------------
+// Sorry this is really messy.  I don't really know what I am doing here.
+gboolean on_repaint(gpointer p1) {
+
+	// http://docs.clutter-project.org/docs/cogl/stable/cogl-General-API.html
+	//  Ugh -- they really don't want you to use raw OpenGL stuff.  Stupid.
+	cogl_begin_gl();
+	
+	ofSetupScreen();
+	ofSetupGraphicDefaults();
+	
+	/*
+	ofDisableSmoothing();
+	ofEnableAlphaBlending();
+	
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+	*/
+
+	if(ofAppPtr){
+		ofAppPtr->update();
+		ofAppPtr->draw();
+		
+#ifdef OF_USING_POCO
+		static ofEventArgs voidEventArgs;
+		ofNotifyEvent( ofEvents.update, voidEventArgs);
+		ofNotifyEvent( ofEvents.draw, voidEventArgs);
+#endif
+	}	
+	
+	
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	
+	cogl_end_gl();
+    return 1;
+}
+
+
+
+
+#pragma mark CLUTTER_STAGE_ATTR_GETTERS_AND_SETTERS
+
+//------------------------------------------------------------
+ofPoint ofxAppClutterWindow::getWindowSize() {
+	ofPoint p;
+	clutter_actor_get_size(stage, &p.x, &p.y);
+	return p;
+}
+
+//------------------------------------------------------------
 void ofxAppClutterWindow::setFrameRate(float targetRate) {
 	clutter_set_default_frame_rate(targetRate);
 }
@@ -143,7 +200,6 @@ void ofxAppClutterWindow::setWindowShape(int w, int h) {
 	clutter_actor_set_size(stage, w, h);
 }
 
-
 //------------------------------------------------------------
 void ofxAppClutterWindow::setWindowTitle(string title){
 	clutter_stage_set_title(CLUTTER_STAGE(stage), title.c_str());
@@ -154,7 +210,6 @@ void ofxAppClutterWindow::setWindowTitle(string title){
 void ofxAppClutterWindow::hideCursor() {
 	clutter_stage_show_cursor(CLUTTER_STAGE(stage));
 }
-
 
 //------------------------------------------------------------
 void ofxAppClutterWindow::showCursor() {
@@ -172,7 +227,6 @@ void ofxAppClutterWindow::toggleFullscreen(){
 	clutter_stage_set_fullscreen(CLUTTER_STAGE(stage), !fullscreen);
 }
 
-
 //------------------------------------------------------------
 int ofxAppClutterWindow::getWindowMode() {
 	gboolean fullscreen = clutter_stage_get_fullscreen(CLUTTER_STAGE(stage));
@@ -180,37 +234,7 @@ int ofxAppClutterWindow::getWindowMode() {
 }
 
 
-//------------------------------------------------------------
-// Sorry this is really messy.  I don't really know what I am doing here.
-gboolean on_repaint(gpointer p1){
-	
-	ofDisableSmoothing();
-	ofEnableAlphaBlending();
-	
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	
-	glDisableClientState(GL_NORMAL_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-	
-	
-	if(ofAppPtr){
-		ofAppPtr->update();
-		ofAppPtr->draw();
-		
-#ifdef OF_USING_POCO
-		static ofEventArgs voidEventArgs;
-		ofNotifyEvent( ofEvents.update, voidEventArgs);
-		ofNotifyEvent( ofEvents.draw, voidEventArgs);
-#endif
-	}	
-	
-	
-	glEnableClientState(GL_NORMAL_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	
-    return 1;
-}
+#pragma mark INITIALIZATION_STUFF
 
 //------------------------------------------------------------
 void ofxAppClutterWindow::setupOpenGL(int w, int h, int screenMode) {
@@ -229,18 +253,15 @@ void ofxAppClutterWindow::setupOpenGL(int w, int h, int screenMode) {
 	
 	g_signal_connect(stage, "motion-event", G_CALLBACK(on_stage_mouse_move), NULL);
 	
-
+	// http://docs.clutter-project.org/docs/clutter-cookbook/1.0/actors-paint-wrappers.html
     clutter_threads_add_repaint_func(&on_repaint, NULL, NULL); //target call
+	//g_signal_connect(stage, "paint", G_CALLBACK(on_repaint), NULL);
 }
-
-
-
 
 //------------------------------------------------------------
 void ofxAppClutterWindow::initializeWindow() {
 	clutter_actor_show(stage);
 }
-
 
 //------------------------------------------------------------
 void ofxAppClutterWindow::runAppViaInfiniteLoop(ofBaseApp * appPtr) {
@@ -253,7 +274,7 @@ void ofxAppClutterWindow::runAppViaInfiniteLoop(ofBaseApp * appPtr) {
 	}	
 	
 	// You have to have something running or else the repaint function won't be called.
-	timeline = clutter_timeline_new( 1000 / getFrameRate() );
+	ClutterTimeline* timeline = clutter_timeline_new( 1000 / getFrameRate() );
 	//g_signal_connect(timeline, "new-frame", G_CALLBACK(on_timeline_new_frame), NULL);
 	clutter_timeline_set_loop(timeline, TRUE); 
 	clutter_timeline_start(timeline);

@@ -17,13 +17,12 @@ class ofPoint;
 class ofBaseApp;
 
 extern ClutterActor *stage;
-extern ClutterTimeline* timeline;
 
 class ofxAppClutterWindow : public ofAppBaseWindow {
 	public:
 	
 	ofxAppClutterWindow(int argc, char *argv[]);
-	~ofxAppClutterWindow(){};
+	~ofxAppClutterWindow();
 	
 	void setupOpenGL(int w, int h, int screenMode);
 	void initializeWindow();
@@ -40,7 +39,7 @@ class ofxAppClutterWindow : public ofAppBaseWindow {
 	virtual double  getLastFrameTime(){ return 0.0; }
 	
 	ofPoint	getWindowPosition() {return ofPoint(); }
-	ofPoint	getWindowSize(){return ofPoint(); }
+	ofPoint	getWindowSize();
 	ofPoint	getScreenSize(){return ofPoint(); }
 	
 	void	setFrameRate(float targetRate);
